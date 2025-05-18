@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Your Books</h2>
+<form method="POST">
+  Search ISBN: <input name="isbn">
+  <button type="submit">Search</button>
+</form>
+<ul>
+  {% for book in books %}
+    <li>
+      <strong>{{ book.title }}</strong> by {{ book.author }} ({{ book.page_count }} pages, rating: {{ book.average_rating }})
+      <a href="{{ url_for('delete', book_id=book.id) }}">Delete</a>
+    </li>
+  {% endfor %}
+</ul>
+<a href="{{ url_for('logout') }}">Logout</a>
+{% endblock %}
